@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block titulo %}
+Registro
+{% endblock %}
+{% block contenido %}
+<section class="section">
+    <div class="columns is-centered">
+        <div class="column is-half">
+            <h3 class="is-size-3">Registro</h3>
+            <form action="{{ url_for('auth.register') }}" method="post" novalidate>
+                {{ form.hidden_tag() }}
+                {{ form.username.label }}
+                {{ form.username(class_="input", placeholder="Usuario") }}
+                {% for error in form.username.errors %}
+                <p class="help is-danger">{{ error }}</p>
+                {% endfor %}
+                {{ form.password.label }}
+                {{ form.password(class_="input", placeholder="Contraseña") }}
+                {% for error in form.password.errors %}
+                <p class="help is-danger">{{ error }}</p>
+                {% endfor %}
+                {{ form.password2.label }}
+                {{ form.password2(class_="input", placeholder="Confirmar contraseña") }}
+                {% for error in form.password2.errors %}
+                <p class="help is-danger">{{ error }}</p>
+                {% endfor %}
+                {{ form.submit(class_="button is-success mt-2") }}
+                <a href="{{ url_for('auth.login') }}" class="button is-primary mt-2">Volver</a>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

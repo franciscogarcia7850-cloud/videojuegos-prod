@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block titulo %} Pagina no encontrada {% endblock %}
+{% block contenido %}
+
+<section class="section">
+
+    <div class="box has-text-centered">
+        <p class="title is-1">404</p>
+        <h3 class="is-size-3">Pagina no encontrada</h3>
+        <p>La direccion <code>{{ request.path }} no existe</code></p>
+        <a href="{{ url_for('juegos') }}" class="button is-primary mt-4">Volver a los juegos</a>
+    </div>
+
+</section>
+
+{% endblock %}

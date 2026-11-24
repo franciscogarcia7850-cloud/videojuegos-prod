@@ -1,0 +1,20 @@
+body {
+    background-color: #f5f7fa;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+
+.table {
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.table tbody tr:hover {
+    background-color: lightgray;
+}
+
+.button {
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}

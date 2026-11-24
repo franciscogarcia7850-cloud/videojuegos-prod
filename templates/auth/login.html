@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block titulo %}
+Ingresar
+{% endblock %}
+{% block contenido %}
+<section class="section">
+    <div class="columns is-centered">
+        <div class="column is-half">
+            <h3 class="is-size-3">Ingresar</h3>
+            <form action="{{ url_for('auth.login', next=request.args.get('next')) }}" method="post" novalidate>
+                {{ form.hidden_tag() }}
+                {{ form.username.label }}
+                {{ form.username(class_="input", placeholder="Usuario") }}
+                {% for error in form.username.errors %}
+                <p class="help is-danger">{{ error }}</p>
+                {% endfor %}
+                {{ form.password.label }}
+                {{ form.password(class_="input", placeholder="Contraseña") }}
+                {% for error in form.password.errors %}
+                <p class="help is-danger">{{ error }}</p>
+                {% endfor %}
+                <label class="checkbox mt-2">
+                    {{ form.remember_me() }} {{ form.remember_me.label.text }}
+                </label>
+                <br>
+                {{ form.submit(class_="button is-success mt-2") }}
+            </form>
+            <p class="mt-4">¿No tienes cuenta? <a href="{{ url_for('auth.register') }}">Regístrate aquí</a></p>
+        </div>
+    </div>
+</section>
+{% endblock %}

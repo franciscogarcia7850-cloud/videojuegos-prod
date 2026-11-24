@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block titulo %} Solicitud Incorrecta {% endblock %}
+{% block contenido %}
+
+<section class="section">
+
+    <div class="box has-text-centered">
+        <p class="title is-1">400</p>
+        <h3 class="is-size-3">Solicitud Incorrecta</h3>
+        <p>A la petición para el url: <code>{{ request.path }}</code>le falta un dato o trae un dato que no es válido</p>
+        <p class="has-text-grey">Detalle: {{ error.description }}</p>
+        <a href="{{ url_for('juegos') }}" class="button is-primary mt-4">Volver a los juegos</a>
+    </div>
+
+</section>
+
+{% endblock %}

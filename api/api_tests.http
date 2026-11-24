@@ -1,0 +1,81 @@
+# Pruebas de la API de juegos
+# Se abre en VS Code con la extension "REST Client" y se le da clic a "Send Request".
+# Antes hay que correr la app desde la carpeta del proyecto con: flask --app app run --port 5001
+# (uso el puerto 5001 porque en Mac el 5000 lo ocupa AirPlay)
+
+@base = http://127.0.0.1:5001/api
+
+### 1. Ver todos los juegos -> 200 OK
+GET {{base}}/juegos
+
+### 2. Crear un juego nuevo -> 201 Created
+POST {{base}}/juegos
+Content-Type: application/json
+
+{
+  "nombre": "Hollow Knight",
+  "descripcion": "Metroidvania de exploración",
+  "precio": 299
+}
+
+### 3. Ver un solo juego -> 200 OK
+GET {{base}}/juegos/1
+
+### 4. Editar el juego 1 -> 200 OK
+PUT {{base}}/juegos/1
+Content-Type: application/json
+
+{
+  "nombre": "Cuphead: The Delicious Last Course",
+  "descripcion": "Juego de acción clásico con su DLC",
+  "precio": 250
+}
+
+### 5. Borrar el juego 1 -> 204 No Content
+DELETE {{base}}/juegos/1
+
+
+# ----- Pruebas con errores -----
+
+### 6. Ver el juego 1 que ya se borró -> 404 Not Found
+GET {{base}}/juegos/1
+
+### 7. Crear un juego sin descripcion ni precio -> 400 Bad Request
+POST {{base}}/juegos
+Content-Type: application/json
+
+{
+  "nombre": "Juego incompleto"
+}
+
+### 8. Crear un juego con un precio que no es numero -> 400 Bad Request
+POST {{base}}/juegos
+Content-Type: application/json
+
+{
+  "nombre": "Celeste",
+  "descripcion": "Plataformas",
+  "precio": "gratis"
+}
+
+### 9. Mandar un JSON mal escrito (falta cerrar la llave) -> 400 Bad Request
+POST {{base}}/juegos
+Content-Type: application/json
+
+{ "nombre": "Roto",
+
+### 10. Editar un juego que no existe -> 404 Not Found
+PUT {{base}}/juegos/999
+Content-Type: application/json
+
+{
+  "nombre": "No existe",
+  "descripcion": "No existe",
+  "precio": 1
+}
+
+### 11. Borrar un juego que no existe -> 404 Not Found
+DELETE {{base}}/juegos/999
+
+### 12. Usar un metodo que la ruta no tiene -> 405 Method Not Allowed
+DELETE {{base}}/juegos

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block titulo %} Metodo no permitido {% endblock %}
+{% block contenido %}
+
+<section class="section">
+
+    <div class="box has-text-centered">
+        <p class="title is-1 has-text-danger">405</p>
+        <h3 class="is-size-3">Método no permitido</h3>
+        <p>La dirección <code>{{ request.path }}</code> no acepta peticiones <strong>{{ request.method }}</strong>.</p>
+        <p class="has-text-grey">Métodos permitidos: {{ error.valid_methods | sort | join(', ') }}</p>
+        <a href="{{ url_for('juegos') }}" class="button is-primary mt-4">Volver a los juegos</a>
+    </div>
+
+</section>
+
+{% endblock %}
